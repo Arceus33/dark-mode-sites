@@ -1,7 +1,7 @@
 # Dark Mode Sites
 
 Extension Chrome qui applique un mode sombre sur mesure à une liste de sites.
-Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`).
+Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Voir Anime** (`voir-anime.to`).
 
 ## Installation
 
@@ -22,6 +22,6 @@ Après une modification des fichiers : bouton ⟳ de l'extension dans `chrome://
 
 ## Ajouter un site
 
-1. `sites.js` : ajouter `{ id, name, domains }`.
+1. `sites.js` : ajouter `{ id, name, domains }`. Si le site a déjà son propre thème sombre activé par une classe de `<body>`, ajouter `bodyClass: { from, to }` : l'extension active ce thème au lieu d'inverser la page (cas de voir-anime, thème Madara).
 2. `manifest.json` : copier le bloc de `content_scripts` d'eBay, y mettre les domaines du site dans `matches` et son CSS dans `css`.
 3. Si besoin, créer `content/sites/<id>.css` avec des règles préfixées par `html:not(.dms-off, .dms-native)`.

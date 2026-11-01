@@ -15,6 +15,13 @@
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true
+    },
+    {
+      "matches": ["*://voir-anime.to/*", "*://*.voir-anime.to/*"],
+      "css": ["content/dark.css", "content/sites/voir-anime.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
     }
   ]
 }

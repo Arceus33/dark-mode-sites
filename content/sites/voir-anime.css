@@ -1,0 +1,84 @@
+/*
+ * Retouches de voir-anime.to par-dessus son thème sombre Madara (body.text-ui-light),
+ * pour les zones que ce thème laisse en blanc.
+ * :is(…, #dms) donne aux sélecteurs le poids d'un identifiant, pour passer devant
+ * les styles du site (Ajax Search Pro cible ses boîtes par identifiant, avec !important).
+ */
+body.text-ui-light {
+  --dms-bg: #18171e;
+  --dms-surface: #24232b;
+  --dms-field: #2c2b34;
+  --dms-border: #3a3943;
+  --dms-text: #e6e6e6;
+  --dms-muted: #a3a3ad;
+}
+
+/* --- Barre des genres (Action, Adventure, Chinese, Comedy…) --- */
+
+body.text-ui-light :is(.c-sub-header-nav, #dms),
+body.text-ui-light :is(.c-sub-header-nav, #dms) :is(.c-sub-nav_wrap, .sub-nav_content, .sub-nav_list, .sub-nav_list > li) {
+  background: var(--dms-bg) !important;
+  border-color: var(--dms-border) !important;
+}
+
+body.text-ui-light :is(.c-sub-header-nav, #dms) a {
+  color: var(--dms-text) !important;
+}
+
+body.text-ui-light :is(.c-sub-header-nav, #dms) :is(.sub-menu, .c-user_menu) {
+  background: var(--dms-surface) !important;
+  border-color: var(--dms-border) !important;
+}
+
+/* --- Recherches VOSTFR et VF (Ajax Search Pro) --- */
+
+body.text-ui-light :is(.asp_w_container, #dms) {
+  background: transparent !important;
+}
+
+/* Boîte de recherche */
+body.text-ui-light :is(.asp_w.asp_m, #dms),
+body.text-ui-light :is(.asp_w.asp_m, #dms) :is(.probox, .proinput, .proinput form, .proinput input) {
+  background: var(--dms-field) !important;
+  background-image: none !important;
+  border-color: var(--dms-border) !important;
+  box-shadow: none !important;
+}
+
+body.text-ui-light :is(.asp_w.asp_m, #dms) .proinput input {
+  color: var(--dms-text) !important;
+}
+
+body.text-ui-light :is(.asp_w.asp_m, #dms) .proinput input::placeholder {
+  color: var(--dms-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Boutons loupe, réglages, effacer */
+body.text-ui-light :is(.asp_w.asp_m, #dms) :is(.promagnifier, .prosettings, .proclose, .proloading) {
+  background: var(--dms-surface) !important;
+  background-image: none !important;
+  border-color: var(--dms-border) !important;
+  box-shadow: none !important;
+}
+
+body.text-ui-light :is(.asp_w.asp_m, #dms) :is(.promagnifier, .prosettings, .proclose) svg {
+  fill: var(--dms-text) !important;
+}
+
+/* Liste des résultats et panneau de réglages (déplacés à la fin de la page par le site) */
+body.text-ui-light :is(.asp_w.asp_r, .asp_w.asp_s, #dms),
+body.text-ui-light :is(.asp_w.asp_r, .asp_w.asp_s, #dms) :is(.results, .resdrg, .item, .asp_content, fieldset, .asp_option, .asp_option_inner) {
+  background: var(--dms-surface) !important;
+  background-image: none !important;
+  border-color: var(--dms-border) !important;
+  box-shadow: none !important;
+}
+
+body.text-ui-light :is(.asp_w.asp_r, #dms) .item:hover {
+  background: var(--dms-field) !important;
+}
+
+body.text-ui-light :is(.asp_w.asp_r, .asp_w.asp_s, #dms) :is(a, h3, h3 a, .asp_res_text, .asp_option_label, legend, span, div) {
+  color: var(--dms-text) !important;
+}

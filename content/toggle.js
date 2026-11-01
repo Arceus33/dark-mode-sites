@@ -9,11 +9,38 @@
 
   const applySetting = (disabled) => {
     root.classList.toggle("dms-off", Boolean(disabled[site.id]));
+    if (site.bodyClass) applyBodyClass();
   };
   chrome.storage.sync.get({ disabled: {} }, ({ disabled }) => applySetting(disabled));
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "sync" && changes.disabled) applySetting(changes.disabled.newValue || {});
   });
+
+  // --- Site avec son propre thème sombre : on l'active, sans inversion ---
+
+  function applyBodyClass() {
+    const body = document.body;
+    if (!body) return;
+    const { from, to } = site.bodyClass;
+    const on = !root.classList.contains("dms-off");
+    // Ne touche à rien si le site a déjà la bonne classe (évite une boucle avec l'observateur)
+    if (body.classList.contains(on ? to : from) && !body.classList.contains(on ? from : to)) return;
+    body.classList.toggle(from, !on);
+    body.classList.toggle(to, on);
+  }
+
+  if (site.bodyClass) {
+    root.classList.add("dms-native");
+    // <body> n'existe pas encore à document_start ; le site peut aussi remettre sa classe
+    new MutationObserver(applyBodyClass).observe(root, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    applyBodyClass();
+    return;
+  }
 
   // --- Détection d'une page déjà sombre ---
 
