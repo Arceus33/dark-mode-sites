@@ -5,11 +5,18 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h1>Mode sombre</h1>
-  <label id="row" class="row" hidden>
-    <span id="site"></span>
-    <input id="toggle" type="checkbox" role="switch">
-  </label>
+  <h1>Mode sombre <span id="version" class="muted"></span></h1>
+  <div id="controls" hidden>
+    <label class="row">
+      <span id="site"></span>
+      <input id="toggle" type="checkbox" role="switch">
+    </label>
+    <label class="row" title="Ignore la détection des pages déjà sombres pour ce site">
+      <span>Toujours sombre</span>
+      <input id="forced" type="checkbox">
+    </label>
+    <p id="state" class="muted"></p>
+  </div>
   <p id="unsupported" class="muted" hidden>Ce site n'est pas encore pris en charge.</p>
   <script src="../sites.js"></script>
   <script src="popup.js"></script>

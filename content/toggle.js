@@ -8,15 +8,27 @@
   const site = dmsSiteForHost(host);
   if (!site) return;
   const root = document.documentElement;
+  // « Toujours sombre » coché dans la fenêtre de l'extension : pas de détection
+  let forced = false;
 
-  const applySetting = (disabled) => {
+  const applySetting = ({ disabled, forced: forcedSites }) => {
     root.classList.toggle("dms-off", Boolean(disabled[site.id]));
+    forced = Boolean(forcedSites[site.id]);
     if (site.bodyClass) applyBodyClass();
+    else if (forced) root.classList.remove("dms-native");
   };
-  chrome.storage.sync.get({ disabled: {} }, ({ disabled }) => applySetting(disabled));
+  const DEFAULTS = { disabled: {}, forced: {} };
+  chrome.storage.sync.get(DEFAULTS, applySetting);
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "sync" && changes.disabled) applySetting(changes.disabled.newValue || {});
+    if (area === "sync" && (changes.disabled || changes.forced)) chrome.storage.sync.get(DEFAULTS, applySetting);
   });
+
+  // État affiché par la fenêtre de l'extension (seule la page principale répond)
+  if (window === top) {
+    chrome.runtime.onMessage.addListener((msg, _sender, reply) => {
+      if (msg === "dms-state") reply({ native: root.classList.contains("dms-native") });
+    });
+  }
 
   // --- Site avec son propre thème sombre : on l'active, sans inversion ---
 
@@ -80,6 +92,7 @@
   };
 
   const check = () => {
+    if (forced) return;
     const dark = pageIsDark();
     if (dark !== null) root.classList.toggle("dms-native", dark);
   };
