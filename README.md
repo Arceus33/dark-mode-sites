@@ -1,7 +1,7 @@
 # Dark Mode Sites
 
 Extension Chrome qui applique un mode sombre sur mesure à une liste de sites.
-Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Voir Anime** (`voir-anime.to`).
+Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Amazon** (`amazon.fr`, `.com`, `.de`, `.co.uk`, `.it`, `.es`, `.ca`, `.com.be`, `.nl`), **Voir Anime** (`voir-anime.to`).
 
 ## Installation
 

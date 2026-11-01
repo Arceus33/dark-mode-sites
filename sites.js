@@ -6,6 +6,11 @@
 const DMS_SITES = [
   { id: "ebay", name: "eBay", domains: ["ebay.fr", "ebay.com", "ebaydesc.com"] },
   {
+    id: "amazon",
+    name: "Amazon",
+    domains: ["amazon.fr", "amazon.com", "amazon.de", "amazon.co.uk", "amazon.it", "amazon.es", "amazon.ca", "amazon.com.be", "amazon.nl"],
+  },
+  {
     id: "voir-anime",
     name: "Voir Anime",
     domains: ["voir-anime.to"],

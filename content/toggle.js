@@ -3,7 +3,9 @@
 // - dms-off : le site a été désactivé dans la fenêtre de l'extension ;
 // - dms-native : la page est déjà sombre, l'inverser la rendrait claire.
 (() => {
-  const site = dmsSiteForHost(location.hostname);
+  // Iframe about:blank (ex. description d'un article Amazon) : site de la page parente
+  const host = location.hostname || new URL(location.ancestorOrigins?.[0] || "http://_").hostname;
+  const site = dmsSiteForHost(host);
   if (!site) return;
   const root = document.documentElement;
 

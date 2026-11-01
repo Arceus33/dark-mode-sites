@@ -1,0 +1,76 @@
+/*
+ * Retouches d'Amazon par-dessus content/dark.css (inversion de toute la page).
+ * Ré-inversés, donc dans leurs vraies couleurs :
+ * - les zones déjà sombres chez Amazon (bandeau, pied de page, en-tête du menu latéral) ;
+ * - les boutons jaunes et orange (Ajouter au panier, Acheter, Continuer, Identifiez-vous),
+ *   qui sortent dorés : un jaune vif est hors d'atteinte sous l'inversion de la page ;
+ * - les voiles noirs posés sur la page quand un menu ou une fenêtre s'ouvre
+ *   (sinon voile blanc).
+ */
+
+/* --- Zones ré-inversées --- */
+
+html:not(.dms-off, .dms-native) :is(
+  #nav-belt,
+  #nav-main,
+  #navFooter,
+  #hmenu-customer-profile,
+  .hmenu-header,
+  .a-button-primary,
+  .a-button:has(#buy-now-button),
+  .nav-action-signin-button,
+  #nav-cover,
+  #hmenu-canvas-background,
+  .a-popover-lgtbox
+) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Leurs images ne doivent pas être ré-inversées une seconde fois */
+html:not(.dms-off, .dms-native) :is(
+  #nav-belt,
+  #nav-main,
+  #navFooter,
+  #hmenu-customer-profile,
+  .hmenu-header,
+  .a-button-primary,
+  .a-button:has(#buy-now-button),
+  .nav-action-signin-button
+) :is(img, video, canvas, iframe, picture, [style*="background-image"]) {
+  filter: none !important;
+}
+
+/* --- Bandeau : champ de recherche assorti au fond marine --- */
+
+/* Champ, son cadre et le formulaire (blanc au clic) : une seule teinte, sans liseré blanc */
+html:not(.dms-off, .dms-native) #nav-belt :is(#nav-search-bar-form, .nav-search-field, #twotabsearchtextbox, .nav-search-field input) {
+  background: #2b3542 !important;
+  color: #f2f2f2 !important;
+}
+
+html:not(.dms-off, .dms-native) #nav-belt #twotabsearchtextbox::placeholder {
+  color: #aab4bf !important;
+}
+
+html:not(.dms-off, .dms-native) #nav-belt .nav-search-scope {
+  background: #37475a !important;
+  color: #f2f2f2 !important;
+  border-color: #37475a !important;
+}
+
+html:not(.dms-off, .dms-native) #nav-belt .nav-search-scope .nav-search-label {
+  color: #f2f2f2 !important;
+}
+
+/* --- Photos produits : coins arrondis, plus doux sur fond sombre --- */
+
+html:not(.dms-off, .dms-native) :is(
+  #imgTagWrapperId,
+  #altImages .imageThumbnail,
+  .s-image-square-aspect,
+  .s-product-image-container,
+  .a-dynamic-image-container
+) {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
