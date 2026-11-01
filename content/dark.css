@@ -1,0 +1,30 @@
+/*
+ * Mode sombre générique : la page entière est inversée (clair → sombre)
+ * puis les médias sont ré-inversés pour garder leurs vraies couleurs.
+ * Résiste aux changements de classes du site, contrairement à un thème écrit élément par élément.
+ * Coupé par dms-off (site désactivé) et dms-native (page déjà sombre), posées par toggle.js.
+ */
+html:not(.dms-off, .dms-native) {
+  filter: invert(0.9) hue-rotate(180deg) !important;
+  /* Blanc inversé = fond sombre, y compris sous les zones transparentes */
+  background-color: #fff !important;
+}
+
+html:not(.dms-off, .dms-native) :is(img, video, canvas, iframe, embed, object, picture),
+html:not(.dms-off, .dms-native) [style*="background-image"] {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/*
+ * Iframe d'un autre site, où l'extension n'agit pas : fond blanc sous son contenu,
+ * sinon un texte sombre sur fond transparent finirait sombre sur sombre.
+ * Les iframes des sites pris en charge s'assombrissent elles-mêmes (all_frames).
+ */
+html:not(.dms-off, .dms-native) iframe {
+  background-color: #fff !important;
+}
+
+/* Une image dans un élément déjà ré-inversé ne doit pas l'être deux fois */
+html:not(.dms-off, .dms-native) :is(picture, [style*="background-image"]) :is(img, video, canvas, picture, [style*="background-image"]) {
+  filter: none !important;
+}

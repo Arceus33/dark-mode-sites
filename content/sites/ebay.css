@@ -1,0 +1,6 @@
+/* Retouches propres à eBay, par-dessus content/dark.css */
+
+/* Logo eBay : garder ses quatre couleurs d'origine */
+html:not(.dms-off, .dms-native) :is(#gh-logo, .gh-logo, [class*="gh-logo"]) :is(svg, img) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}

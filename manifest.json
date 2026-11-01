@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Dark Mode Sites",
+  "version": "0.1.0",
+  "description": "Mode sombre sur mesure réalisé par Thomas R.",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_title": "Mode sombre",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.ebay.fr/*", "*://*.ebay.com/*", "*://ebay.fr/*", "*://ebay.com/*", "*://*.ebaydesc.com/*"],
+      "css": ["content/dark.css", "content/sites/ebay.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
