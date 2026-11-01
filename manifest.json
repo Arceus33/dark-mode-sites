@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dark Mode Sites",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Mode sombre sur mesure réalisé par Thomas R.",
   "permissions": ["storage", "activeTab"],
   "action": {
