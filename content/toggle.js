@@ -60,11 +60,28 @@
 
   const MEDIA = new Set(["IMG", "VIDEO", "CANVAS", "IFRAME", "PICTURE", "SVG", "EMBED", "OBJECT"]);
 
+  // Voile posé sur la page quand un menu s'ouvre (ex. #nav-cover d'Amazon) :
+  // grand bloc vide, sans texte ni contenu.
+  const isBackdrop = (el) => {
+    if (el === document.body || el === root || el.firstElementChild || el.textContent.trim()) return false;
+    const r = el.getBoundingClientRect();
+    return r.width * r.height > innerWidth * innerHeight * 0.5;
+  };
+
+  const isOverlay = (el) => Number(getComputedStyle(el).opacity) < 0.95 || isBackdrop(el);
+
+  // Élément de la page visible en un point, sous les voiles et calques translucides
+  // (sinon une page claire passerait pour sombre le temps d'un survol). Ce n'est pas
+  // le parent du voile qui compte : celui d'Amazon est rangé dans le bandeau marine.
+  const pageElementAt = (x, y) => document.elementsFromPoint(x, y).find((el) => !isOverlay(el));
+
   // Couleur de fond réellement visible sous un élément : premier ancêtre au fond opaque.
   const backgroundUnder = (el) => {
     for (; el; el = el.parentElement) {
-      const m = getComputedStyle(el).backgroundColor.match(/[\d.]+/g);
-      if (m && (m[3] === undefined || Number(m[3]) >= 0.5)) return m.slice(0, 3).map(Number);
+      const cs = getComputedStyle(el);
+      if (isOverlay(el)) continue;
+      const m = cs.backgroundColor.match(/[\d.]+/g);
+      if (m && (m[3] === undefined || Number(m[3]) >= 0.95)) return m.slice(0, 3).map(Number);
     }
     return [255, 255, 255]; // fond par défaut du navigateur
   };
@@ -81,7 +98,7 @@
     let light = 0;
     for (const fx of [0.2, 0.5, 0.8]) {
       for (const fy of [0.2, 0.5, 0.8]) {
-        const el = document.elementFromPoint(innerWidth * fx, innerHeight * fy);
+        const el = pageElementAt(innerWidth * fx, innerHeight * fy);
         if (!el || MEDIA.has(el.tagName.toUpperCase())) continue;
         if (luminance(backgroundUnder(el)) < 0.4) dark++;
         else light++;
@@ -91,25 +108,45 @@
     return dark + light === 0 ? null : dark > light;
   };
 
-  const check = () => {
-    if (forced) return;
+  // Plusieurs mesures après le chargement : les pages en JavaScript se construisent tard
+  // (eBay Live affiche d'abord une ébauche claire). Garde-fous contre un menu ouvert
+  // pendant une mesure :
+  // - « déjà sombre » seulement si deux mesures de suite le disent ;
+  // - une page restée claire à la fin de la série le reste jusqu'au changement de page.
+  const DELAYS = [0, 500, 1500, 3000];
+  let series = 0;
+  let previousDark = false;
+  let lockedLight = false;
+
+  const check = (id, last) => {
+    if (id !== series || forced || lockedLight) return;
     const dark = pageIsDark();
-    if (dark !== null) root.classList.toggle("dms-native", dark);
+    if (dark === null) return;
+    if (!dark) root.classList.remove("dms-native");
+    else if (previousDark) root.classList.add("dms-native");
+    previousDark = dark;
+    if (last && !root.classList.contains("dms-native")) lockedLight = true;
   };
 
-  // Plusieurs mesures après le chargement : les pages en JavaScript se construisent tard.
-  const checkSoon = () => [0, 500, 1500, 3000].forEach((ms) => setTimeout(check, ms));
+  const checkSoon = () => {
+    const id = ++series;
+    previousDark = false;
+    lockedLight = false;
+    DELAYS.forEach((ms, i) => setTimeout(() => check(id, i === DELAYS.length - 1), ms));
+  };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", checkSoon, { once: true });
   } else {
     checkSoon();
   }
 
-  // Navigation interne sans rechargement (eBay Live, pages en JavaScript)
-  let lastUrl = location.href;
+  // Navigation interne sans rechargement (eBay Live, pages en JavaScript) : seul un
+  // changement de chemin compte, pas un paramètre ou une ancre ajoutés à l'adresse.
+  let lastPath = location.pathname;
   setInterval(() => {
-    if (location.href !== lastUrl) {
-      lastUrl = location.href;
+    if (location.pathname !== lastPath) {
+      lastPath = location.pathname;
+      root.classList.remove("dms-native");
       checkSoon();
     }
   }, 1000);
