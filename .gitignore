@@ -1,0 +1,5 @@
+# Fichiers .xpi produits par sign-firefox.ps1 (web-ext sign)
+web-ext-artifacts/
+
+# Identifiant de téléversement local de web-ext sign
+.amo-upload-uuid

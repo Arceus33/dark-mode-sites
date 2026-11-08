@@ -19,6 +19,14 @@ Après une modification des fichiers : bouton **Recharger l'extension** dans la 
 
 L'extension reste installée jusqu'à la fermeture de Firefox. Si un site reste clair, cliquer sur l'icône puzzle de la barre d'outils et autoriser l'extension sur ce site.
 
+**Installation permanente** (Firefox habituel) : l'extension doit être signée par Mozilla, en canal privé (rien n'est publié sur la boutique).
+
+1. Créer un compte sur addons.mozilla.org, puis une clé sur https://addons.mozilla.org/fr/developers/addon/api/key/.
+2. Dans ce dossier : `powershell -ExecutionPolicy Bypass -File .\sign-firefox.ps1`. Le script demande l'émetteur et le secret JWT ; le fichier signé arrive dans `web-ext-artifacts\`.
+3. Firefox : `about:addons` > roue dentée > **Installer un module depuis un fichier…** > le `.xpi`.
+
+Chaque nouvelle signature demande d'augmenter `version` dans `manifest.json`.
+
 ## Fonctionnement
 
 - `content/dark.css` : inverse les couleurs de la page (clair → sombre) et ré-inverse images, vidéos et iframes pour garder leurs vraies couleurs. Actif dès le chargement, sans flash blanc.
