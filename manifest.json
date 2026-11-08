@@ -97,6 +97,13 @@
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true
+    },
+    {
+      "matches": ["*://vivinter.fr/*", "*://*.vivinter.fr/*"],
+      "css": ["content/dark.css", "content/sites/vivinter.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
     }
   ]
 }

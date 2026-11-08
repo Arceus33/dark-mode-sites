@@ -54,6 +54,8 @@ const DMS_SITES = [
   // Connexion dans une iframe de www.icgauth.caisse-epargne.fr
   { id: "caisse-epargne", name: "Caisse d'Épargne", domains: ["caisse-epargne.fr"] },
   { id: "riot-merch", name: "Boutique Riot Games", domains: ["merch.riotgames.com"] },
+  // Site public (www) et espace assuré (assure)
+  { id: "vivinter", name: "Vivinter", domains: ["vivinter.fr"] },
 ];
 
 // Site sans inversion : thème sombre du site ou écrit à la main

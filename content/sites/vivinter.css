@@ -1,0 +1,24 @@
+/* Retouches de Vivinter (www et assure.vivinter.fr) par-dessus content/dark.css (inversion de la page) */
+
+/* Logo : image JPEG sur fond blanc, carré blanc une fois ré-inversé. Laissé inversé, donc sombre. */
+html:not(.dms-off, .dms-native) .logo img {
+  filter: none !important;
+}
+
+/*
+ * Pages de connexion (body.disconnected) : le titre « Espace Assuré », bleu nuit posé sur
+ * une photo claire, devenait clair sur clair. Gardé dans sa vraie couleur. Limité à ces pages :
+ * une fois connecté, le titre n'est pas forcément sur une photo.
+ */
+html:not(.dms-off, .dms-native) body.disconnected .main_title {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/*
+ * Assistant « Besoin d'aide ? » (service Genii, iframes #genii-iframe-hook et -core) :
+ * documents transparents autour d'un bouton rond. Le fond blanc que dark.css met derrière
+ * les iframes d'autres sites faisait apparaître un rectangle blanc autour du bouton.
+ */
+html:not(.dms-off, .dms-native) iframe[id^="genii-iframe"] {
+  background-color: transparent !important;
+}

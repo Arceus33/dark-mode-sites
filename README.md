@@ -1,7 +1,7 @@
 # Dark Mode Sites
 
 Extension Chrome qui applique un mode sombre sur mesure à une liste de sites.
-Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Amazon** (`amazon.fr`, `.com`, `.de`, `.co.uk`, `.it`, `.es`, `.ca`, `.com.be`, `.nl`), **Voir Anime** (`voir-anime.to`), **Vinted** (`vinted.fr`, `.com`, `.be`, `.de`, `.es`, `.it`, `.co.uk` et les autres pays), **HoYoLAB** (page de connexion quotidienne, `act.hoyolab.com`), **ameli** (compte assuré, `assure.ameli.fr`), **BoursoBank** (espace client, `clients.boursobank.com`), **Caisse d'Épargne** (`caisse-epargne.fr`), **Boutique Riot Games** (`merch.riotgames.com`).
+Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Amazon** (`amazon.fr`, `.com`, `.de`, `.co.uk`, `.it`, `.es`, `.ca`, `.com.be`, `.nl`), **Voir Anime** (`voir-anime.to`), **Vinted** (`vinted.fr`, `.com`, `.be`, `.de`, `.es`, `.it`, `.co.uk` et les autres pays), **HoYoLAB** (page de connexion quotidienne, `act.hoyolab.com`), **ameli** (compte assuré, `assure.ameli.fr`), **BoursoBank** (espace client, `clients.boursobank.com`), **Caisse d'Épargne** (`caisse-epargne.fr`), **Boutique Riot Games** (`merch.riotgames.com`), **Vivinter** (`www.vivinter.fr` et l'espace assuré `assure.vivinter.fr`).
 
 ## Installation
 
