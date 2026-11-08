@@ -13,7 +13,8 @@
 
   const applySetting = ({ disabled, forced: forcedSites }) => {
     root.classList.toggle("dms-off", Boolean(disabled[site.id]));
-    forced = Boolean(forcedSites[site.id]);
+    // detect: false (sites.js) : la détection se trompe sur ce site, comme « Toujours sombre »
+    forced = Boolean(forcedSites[site.id]) || site.detect === false;
     if (dmsHasOwnTheme(site)) applyOwnTheme();
     else if (forced) root.classList.remove("dms-native");
   };
@@ -30,7 +31,7 @@
     });
   }
 
-  // --- Site avec son propre thème sombre : on l'active, sans inversion ---
+  // --- Site sans inversion : son propre thème sombre, ou un thème écrit à la main (custom) ---
 
   function applyBodyClass() {
     const body = document.body;
@@ -96,10 +97,14 @@
   const pageElementAt = (x, y) => document.elementsFromPoint(x, y).find((el) => !isOverlay(el));
 
   // Couleur de fond réellement visible sous un élément : premier ancêtre au fond opaque.
+  // null si une image de fond passe avant (photo, illustration) : la zone ne vote pas,
+  // comme les images et vidéos. Sa couleur de secours (souvent un gris moyen sous une
+  // photo, ex. Caisse d'Épargne) faisait passer une page claire pour sombre.
   const backgroundUnder = (el) => {
     for (; el; el = el.parentElement) {
       const cs = getComputedStyle(el);
       if (isOverlay(el)) continue;
+      if (cs.backgroundImage.includes("url(")) return null;
       const m = cs.backgroundColor.match(/[\d.]+/g);
       if (m && (m[3] === undefined || Number(m[3]) >= 0.95)) return m.slice(0, 3).map(Number);
     }
@@ -107,6 +112,17 @@
   };
 
   const luminance = ([r, g, b]) => (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+
+  // Zones dont la couleur d'origine varie (lightZones dans sites.js) : classe sur <html>
+  // quand la zone est claire, pour que le CSS du site l'inverse au lieu de la ré-inverser.
+  // Le style calculé ignore les filtres : c'est bien la couleur d'origine qui est lue.
+  const checkZones = () => {
+    for (const [cls, selector] of Object.entries(site.lightZones || {})) {
+      const el = document.querySelector(selector);
+      const bg = el && backgroundUnder(el);
+      if (bg) root.classList.toggle(cls, luminance(bg) >= 0.5);
+    }
+  };
 
   // Échantillonne une grille de points ; les zones de vidéo ou d'image ne votent pas.
   const pageIsDark = () => {
@@ -120,7 +136,9 @@
       for (const fy of [0.2, 0.5, 0.8]) {
         const el = pageElementAt(innerWidth * fx, innerHeight * fy);
         if (!el || MEDIA.has(el.tagName.toUpperCase())) continue;
-        if (luminance(backgroundUnder(el)) < 0.4) dark++;
+        const bg = backgroundUnder(el);
+        if (!bg) continue;
+        if (luminance(bg) < 0.4) dark++;
         else light++;
       }
     }
@@ -139,6 +157,7 @@
   let lockedLight = false;
 
   const check = (id, last) => {
+    if (id === series) checkZones();
     if (id !== series || forced || lockedLight) return;
     const dark = pageIsDark();
     if (dark === null) return;

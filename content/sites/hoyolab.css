@@ -1,0 +1,128 @@
+/*
+ * Pointage quotidien HoYoLAB (act.hoyolab.com) : thème sombre écrit à la main, sans inversion.
+ * La page est faite d'illustrations (fond, cadres, cases des récompenses) posées en style
+ * inline par le site : l'inversion les laissait claires. On les assombrit à la place :
+ * - filter sur les fonds qui ne contiennent rien ;
+ * - ::before + backdrop-filter sur les blocs avec du contenu, pour assombrir leur seule
+ *   image de fond sans toucher aux icônes ni au texte posés dessus.
+ * Classes générées par le site (ex. prize-list_---item---F852VZ) : ciblées sans leur
+ * suffixe, qui change à chaque mise à jour.
+ */
+
+html:not(.dms-off) {
+  color-scheme: dark;
+  --dms-bg: #14131a;
+  --dms-surface: #1d1c24;
+  --dms-field: #2a2933;
+  --dms-text: #ececf1;
+  --dms-muted: #a9a9b3;
+}
+
+html:not(.dms-off) body {
+  background-color: var(--dms-bg) !important;
+}
+
+/* --- Bandeau HoYoLAB --- */
+
+html:not(.dms-off) :is(.mhy-hoyolab-header, .mhy-hoyolab-header__wrapper) {
+  background-color: var(--dms-surface) !important;
+  box-shadow: none !important;
+}
+
+/* Logo bleu nuit, illisible sur le bandeau sombre : passé en blanc */
+html:not(.dms-off) .mhy-hoyolab-header__hoyolab {
+  filter: brightness(0) invert(0.92) !important;
+}
+
+html:not(.dms-off) .mhy-hoyolab-lang-selector {
+  background-color: var(--dms-field) !important;
+}
+
+/* --- Illustration de fond (personnages en haut, motif crème en bas) : voilée --- */
+
+/* Ombre intérieure : peinte au-dessus du fond de l'élément, sous son contenu */
+html:not(.dms-off) [class*="home_---scroller---"] {
+  box-shadow: inset 0 0 0 100vmax rgba(12, 11, 16, 0.6) !important;
+}
+
+/* --- Panneau du mois : intérieur sombre dans le cadre doré --- */
+
+html:not(.dms-off) [class*="main-module_---content---"] {
+  background-color: rgba(20, 19, 26, 0.95) !important;
+  border-radius: 6px !important;
+  /* Recouvre la bande crème entre le cadre doré et le contenu */
+  box-shadow: 0 0 0 8px rgba(20, 19, 26, 0.95) !important;
+}
+
+html:not(.dms-off) [class*="main-module_---day---"] {
+  color: var(--dms-text) !important;
+}
+
+html:not(.dms-off) :is([class*="main-module_---desc---"], [class*="main-module_---resign-desc---"]) {
+  color: var(--dms-muted) !important;
+}
+
+/* --- Cases des récompenses --- */
+
+html:not(.dms-off) [class*="prize-list_---item---"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px 12px 0 0;
+  backdrop-filter: brightness(0.3);
+  pointer-events: none;
+}
+
+html:not(.dms-off) :is([class*="prize-list_---cnt---"], [class*="prize-list_---no---"]) {
+  color: var(--dms-text) !important;
+}
+
+html:not(.dms-off) [class*="prize-list_---arrow---"] {
+  color: var(--dms-text) !important;
+}
+
+/* --- Articles recommandés --- */
+
+html:not(.dms-off) :is([class*="recommend-list_---bg-top---"], [class*="recommend-list_---bg-mid---"], [class*="recommend-list_---bg-bottom---"]) {
+  filter: brightness(0.18) !important;
+}
+
+html:not(.dms-off) [class*="recommend-list_---card---"] {
+  position: relative !important;
+}
+
+html:not(.dms-off) [class*="recommend-list_---card---"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  backdrop-filter: brightness(0.3);
+  pointer-events: none;
+}
+
+html:not(.dms-off) [class*="recommend-list_---card---"] > * {
+  position: relative;
+}
+
+html:not(.dms-off) :is([class*="recommend-list_---text__title---"], [class*="recommend-list_---text__des---"]) {
+  color: var(--dms-text) !important;
+}
+
+html:not(.dms-off) :is([class*="recommend-list_---user---"], [class*="recommend-list_---nickname---"]) {
+  color: var(--dms-muted) !important;
+}
+
+/* --- Fenêtres (application, règles, récompense du jour) --- */
+
+html:not(.dms-off) [class*="dialog_---dialog-bg---"] {
+  filter: brightness(0.22) !important;
+}
+
+html:not(.dms-off) [class*="dialog_---dialog-body---"] :is(p, span, div, li, h1, h2, h3) {
+  color: var(--dms-text) !important;
+}
+
+/* Croix de fermeture : sombre, dessinée pour un fond clair */
+html:not(.dms-off) [class*="dialog_---dialog-close---"] {
+  filter: invert(1) !important;
+}

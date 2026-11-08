@@ -5,19 +5,36 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h1>Mode sombre <span id="version" class="muted"></span></h1>
-  <div id="controls" hidden>
-    <label class="row">
-      <span id="site"></span>
-      <input id="toggle" type="checkbox" role="switch">
-    </label>
-    <label class="row" title="Ignore la détection des pages déjà sombres pour ce site">
-      <span>Toujours sombre</span>
-      <input id="forced" type="checkbox">
-    </label>
-    <p id="state" class="muted"></p>
-  </div>
-  <p id="unsupported" class="muted" hidden>Ce site n'est pas encore pris en charge.</p>
+  <header class="header">
+    <h1>Mode sombre</h1>
+    <span id="version" class="version"></span>
+  </header>
+
+  <main class="main">
+    <section id="controls" class="card" hidden>
+      <label class="row row--site">
+        <span id="site" class="site"></span>
+        <input id="toggle" class="switch" type="checkbox" role="switch">
+      </label>
+      <label class="row row--option" title="Ignore la détection des pages déjà sombres pour ce site">
+        <span>Toujours sombre</span>
+        <input id="forced" class="switch switch--small" type="checkbox" role="switch">
+      </label>
+    </section>
+    <p id="state" class="state"></p>
+    <p id="unsupported" class="state" hidden>Ce site n'est pas encore pris en charge.</p>
+  </main>
+
+  <footer class="footer">
+    <button id="reload" class="button" type="button" hidden title="Relit les fichiers de l'extension, puis recharge cet onglet">
+      <svg class="button__icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M13.5 8a5.5 5.5 0 1 1-1.61-3.89" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M13.5 2.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Recharger l'extension
+    </button>
+  </footer>
+
   <script src="../sites.js"></script>
   <script src="popup.js"></script>
 </body>

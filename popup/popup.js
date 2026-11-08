@@ -1,3 +1,20 @@
+// Bouton « Recharger l'extension » : seulement pour une extension chargée depuis son dossier
+// (mode développeur de Chrome, module temporaire de Firefox), la seule qui relit ses fichiers.
+// tabId : onglet à recharger ensuite, par background.js (null si le site n'est pas pris en charge).
+async function setupReload(tabId) {
+  try {
+    if ((await chrome.management.getSelf()).installType !== "development") return;
+  } catch {
+    return;
+  }
+  const button = document.getElementById("reload");
+  button.hidden = false;
+  button.addEventListener("click", async () => {
+    await chrome.storage.local.set({ reloadTab: tabId });
+    chrome.runtime.reload();
+  });
+}
+
 (async () => {
   document.getElementById("version").textContent = "v" + chrome.runtime.getManifest().version;
 
@@ -8,6 +25,8 @@
   } catch {
     // Page sans URL lisible (chrome://, nouvel onglet…)
   }
+
+  setupReload(site ? tab.id : null);
 
   if (!site) {
     document.getElementById("unsupported").hidden = false;
@@ -29,7 +48,7 @@
       return;
     }
     if (dmsHasOwnTheme(site)) {
-      state.textContent = "Thème sombre du site activé.";
+      state.textContent = site.custom ? "Mode sombre actif." : "Thème sombre du site activé.";
       return;
     }
     try {
@@ -46,7 +65,7 @@
   toggle.checked = !settings.disabled[site.id];
   forced.checked = Boolean(settings.forced[site.id]);
   forced.disabled = !toggle.checked;
-  forced.parentElement.hidden = dmsHasOwnTheme(site);
+  forced.parentElement.hidden = dmsHasOwnTheme(site) || site.detect === false;
   showState();
 
   // Coche ou décoche le site dans une des listes enregistrées

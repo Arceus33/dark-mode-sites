@@ -1,0 +1,26 @@
+/*
+ * Boutique Riot Games (merch.riotgames.com) par-dessus content/dark.css (inversion de la page).
+ * Ré-inversés, donc dans leurs vraies couleurs : les blocs déjà noirs chez Riot (bandeau,
+ * pied de page, bannière du carrousel, fenêtres des cookies), sinon gris clair.
+ * Classes générées (ex. default-layout_layout__header__RY656) : ciblées sans leur suffixe.
+ */
+html:not(.dms-off, .dms-native) :is(
+  [class*="default-layout_layout__header"],
+  [class*="default-layout_layout__footer"],
+  [class*="shop-carousel_shop-carousel__banner"],
+  .osano-cm-dialog,
+  .osano-cm-info-dialog__info
+) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Leurs images ne doivent pas être ré-inversées une seconde fois */
+html:not(.dms-off, .dms-native) :is(
+  [class*="default-layout_layout__header"],
+  [class*="default-layout_layout__footer"],
+  [class*="shop-carousel_shop-carousel__banner"],
+  .osano-cm-dialog,
+  .osano-cm-info-dialog__info
+) :is(img, video, canvas, iframe, picture, [style*="background-image"]) {
+  filter: none !important;
+}

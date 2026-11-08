@@ -1,0 +1,30 @@
+/*
+ * Retouches d'ameli par-dessus content/dark.css (inversion de toute la page).
+ * Ré-inversés, donc dans leurs vraies couleurs :
+ * - la photo d'accueil, posée en fond CSS (dark.css ne ré-inverse que les fonds inline) ;
+ * - le pied de page et la bannière des cookies, déjà sombres chez ameli.
+ */
+
+html:not(.dms-off, .dms-native) :is(#background_image, .footer-connexion, .popupWARecueilConsentement .container) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Leurs images ne doivent pas être ré-inversées une seconde fois */
+html:not(.dms-off, .dms-native) :is(.footer-connexion, .popupWARecueilConsentement .container) :is(img, picture, svg, [style*="background-image"]) {
+  filter: none !important;
+}
+
+/* Logo bleu marine, invisible sur le bandeau sombre : laissé inversé, donc clair */
+html:not(.dms-off, .dms-native) img.logoam {
+  filter: none !important;
+}
+
+/* Voile noir sous les fenêtres (bannière cookies…) : blanc une fois inversé, donc noir */
+html:not(.dms-off, .dms-native) .ncp-popup-overlay {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* La photo ré-inversée (filter = nouveau plan) passerait sinon par-dessus le bandeau du haut */
+html:not(.dms-off, .dms-native) .tetiere-connexion {
+  z-index: 1 !important;
+}

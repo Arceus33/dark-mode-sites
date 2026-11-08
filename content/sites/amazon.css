@@ -74,3 +74,77 @@ html:not(.dms-off, .dms-native) :is(
   border-radius: 8px !important;
   overflow: hidden !important;
 }
+
+/* --- Compte Amazon Business sur amazon.fr : bandeau #navbar.nav-business-beacon --- */
+
+/*
+ * Le fond sombre est posé sur #navbar lui-même, et les blocs propres à Business n'ont pas
+ * toujours le leur : ré-inverser seulement #nav-belt et #nav-main laissait des zones claires.
+ * On ré-inverse donc tout le bandeau, à la place de ses deux rangées.
+ */
+html:not(.dms-off, .dms-native) #navbar.nav-business-beacon {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+html:not(.dms-off, .dms-native) #navbar.nav-business-beacon :is(#nav-belt, #nav-main) {
+  filter: none !important;
+}
+
+/* Menus déroulants et suggestions de recherche, rangés dans #navbar : inversés comme la page */
+html:not(.dms-off, .dms-native) #navbar.nav-business-beacon :is(#nav-flyout-anchor, #nav-flyout-iss-anchor) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Images du bandeau : déjà dans leurs vraies couleurs, sauf celles des menus déroulants */
+html:not(.dms-off, .dms-native) #navbar.nav-business-beacon :is(img, video, canvas, iframe, picture, [style*="background-image"]):not(:is(#nav-flyout-anchor, #nav-flyout-iss-anchor) *) {
+  filter: none !important;
+}
+
+/* --- Amazon Business (business.amazon.fr…) : en-tête et bannière propres à ce site --- */
+
+/* Logo « amazon business » : texte noir, laissé inversé pour rester lisible sur le fond sombre */
+html:not(.dms-off, .dms-native) .primary-navigation__bottom__logo {
+  filter: none !important;
+}
+
+/* Bannière des cookies, bleu nuit chez Amazon Business : vraies couleurs */
+html:not(.dms-off, .dms-native) #cookie-banner {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+html:not(.dms-off, .dms-native) #cookie-banner :is(img, video, canvas, picture, svg, [style*="background-image"]) {
+  filter: none !important;
+}
+
+/*
+ * --- Bandeau clair d'origine (classe dms-light-navbar, posée par toggle.js) ---
+ * Certains comptes Amazon Business ont un bandeau blanc : le ré-inverser comme le bandeau
+ * marine habituel le laissait blanc. Il est alors simplement inversé avec la page.
+ * Règles placées en dernier : elles passent devant celles du bandeau sombre, à poids égal.
+ */
+html.dms-light-navbar:not(.dms-off, .dms-native) #navbar,
+html.dms-light-navbar:not(.dms-off, .dms-native) #navbar :is(#nav-belt, #nav-main, #nav-flyout-anchor, #nav-flyout-iss-anchor) {
+  filter: none !important;
+}
+
+/*
+ * Logo et icônes du bandeau, dessinés pour un fond clair : laissés inversés, donc clairs
+ * (règles des images du bandeau plus haut). Les images des menus déroulants gardent la
+ * ré-inversion normale de dark.css.
+ */
+
+/* Champ de recherche : couleurs claires, qui sortent sombres une fois inversées */
+html.dms-light-navbar:not(.dms-off, .dms-native) #nav-belt :is(#nav-search-bar-form, .nav-search-field, #twotabsearchtextbox, .nav-search-field input) {
+  background: #fff !important;
+  color: #0f1111 !important;
+}
+
+html.dms-light-navbar:not(.dms-off, .dms-native) #nav-belt #twotabsearchtextbox::placeholder {
+  color: #6f7373 !important;
+}
+
+html.dms-light-navbar:not(.dms-off, .dms-native) #nav-belt :is(.nav-search-scope, .nav-search-scope .nav-search-label) {
+  background: #e6e6e6 !important;
+  color: #0f1111 !important;
+  border-color: #e6e6e6 !important;
+}

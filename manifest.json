@@ -3,10 +3,24 @@
   "name": "Dark Mode Sites",
   "version": "0.2.0",
   "description": "Mode sombre sur mesure réalisé par Thomas R.",
+  "icons": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
   "permissions": ["storage", "activeTab"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "dark-mode-sites@thomas-r",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": { "required": ["none"] }
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
   "action": {
     "default_title": "Mode sombre",
-    "default_popup": "popup/popup.html"
+    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png" },
+    "default_popup": "popup/popup.html",
+    "default_area": "navbar"
   },
   "content_scripts": [
     {
@@ -46,6 +60,40 @@
         "*://vinted.fi/*", "*://*.vinted.fi/*", "*://vinted.dk/*", "*://*.vinted.dk/*"
       ],
       "css": ["content/sites/vinted.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://act.hoyolab.com/bbs/event/signin/*"],
+      "css": ["content/sites/hoyolab.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://assure.ameli.fr/*"],
+      "css": ["content/dark.css", "content/sites/ameli.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://clients.boursobank.com/*"],
+      "css": ["content/dark.css", "content/sites/boursobank.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://caisse-epargne.fr/*", "*://*.caisse-epargne.fr/*"],
+      "css": ["content/dark.css", "content/sites/caisse-epargne.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://merch.riotgames.com/*"],
+      "css": ["content/dark.css", "content/sites/riot-merch.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true

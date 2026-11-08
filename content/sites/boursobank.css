@@ -1,0 +1,90 @@
+/* Retouches de BoursoBank par-dessus content/dark.css (inversion de toute la page) */
+
+/*
+ * Lisibilité du relevé : plus de contraste que l'inversion par défaut.
+ * Fond plus noir, textes gris (intitulés, dates) et montants nettement plus clairs.
+ */
+html:not(.dms-off, .dms-native) {
+  filter: invert(0.93) hue-rotate(180deg) contrast(1.1) brightness(1.1) !important;
+}
+
+/*
+ * Blocs bleu nuit (solde, découvert autorisé, synthèse des comptes) : ré-inversés,
+ * donc dans leurs vraies couleurs, au lieu de ressortir en grands aplats clairs.
+ */
+html:not(.dms-off, .dms-native) :is(
+  .account-head-wrapper,
+  .c-dashboard-header,
+  .c-summary-account-wrapper,
+  .c-summary-account-wrapper-grid .c-card
+) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Bloc rangé dans un autre bloc ré-inversé, ou image dedans : pas une seconde fois */
+html:not(.dms-off, .dms-native) :is(.account-head-wrapper, .c-dashboard-header, .c-summary-account-wrapper, .c-summary-account-wrapper-grid .c-card)
+  :is(.account-head-wrapper, .c-dashboard-header, .c-summary-account-wrapper, .c-card, img, video, canvas, picture, svg, [style*="background-image"]) {
+  filter: none !important;
+}
+
+/*
+ * Cartes blanches rangées dans l'en-tête bleu nuit (ex. « Mouvements à venir hors carte /
+ * Solde à venir ») : la ré-inversion de l'en-tête les rendait blanches. Inversées à nouveau,
+ * elles redeviennent sombres comme le reste de la page. Seules les cartes marquées
+ * u-background-gradient-dark-blue sont transparentes (bleu nuit de l'en-tête) chez BoursoBank.
+ */
+html:not(.dms-off, .dms-native) .account-head-wrapper .c-card:not(.u-background-gradient-dark-blue) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Leurs images reprennent la ré-inversion normale de dark.css */
+html:not(.dms-off, .dms-native) .account-head-wrapper .c-card:not(.u-background-gradient-dark-blue) :is(img, video, canvas, picture):not(picture *) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/*
+ * Montants positifs en vert vif (#34d671) : une fois inversés, vert sombre peu lisible.
+ * Vert foncé ici, donc vif à l'écran. Classes du relevé inconnues (chargées une fois
+ * connecté) : on vise tout montant ou solde marqué « positive », hors blocs ré-inversés.
+ */
+html:not(.dms-off, .dms-native) :is(
+  .c-info-box__account-balance--positive,
+  .c-info-box__product-balance--positive,
+  :is([class*="amount"], [class*="balance"], [class*="montant"])[class*="positive"],
+  :is([class*="amount"], [class*="balance"], [class*="montant"]).positive
+):not(:is(.account-head-wrapper, .c-dashboard-header, .c-summary-account-wrapper, .c-summary-account-wrapper-grid .c-card) *) {
+  color: #0b6b3f !important;
+}
+
+/*
+ * --- Fenêtres en plein écran (virements…) : body.body--modal-full-display ---
+ * Le dégradé bleu nuit est posé sur <body> lui-même, autour d'une fenêtre blanche :
+ * inversé, il devenait bleu ciel. On ne peut pas ré-inverser <body> (toute la page avec) :
+ * il perd son fond, repeint à l'identique dans un calque ré-inversé placé derrière la page.
+ */
+html:not(.dms-off, .dms-native) body.body--modal-full-display {
+  background: transparent !important;
+}
+
+html:not(.dms-off, .dms-native) body.body--modal-full-display::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(119deg, #1a2e45, #003883);
+  filter: invert(1) hue-rotate(180deg);
+  pointer-events: none;
+}
+
+/*
+ * Titre et croix de fermeture, blancs sur le bleu nuit : vraies couleurs. Seulement
+ * .modal__super-header : .modal__header contient aussi le haut blanc de la fenêtre
+ * (fil d'Ariane, .modal__content-header), qui doit rester inversé.
+ */
+html:not(.dms-off, .dms-native) body.body--modal-full-display .modal__super-header {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+html:not(.dms-off, .dms-native) body.body--modal-full-display .modal__super-header :is(img, video, canvas, picture, [style*="background-image"]) {
+  filter: none !important;
+}

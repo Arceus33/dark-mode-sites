@@ -1,0 +1,18 @@
+/*
+ * Retouches de la Caisse d'Épargne par-dessus content/dark.css (inversion de toute la page).
+ * La connexion s'affiche dans une iframe de www.icgauth.caisse-epargne.fr, couverte aussi.
+ */
+
+/* Photo de la page de connexion, posée en fond CSS (non ré-inversée par dark.css) : vraies couleurs */
+html:not(.dms-off, .dms-native) .right-column {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+html:not(.dms-off, .dms-native) .right-column :is(img, video, canvas, picture, svg, [style*="background-image"]) {
+  filter: none !important;
+}
+
+/* Voile noir sous les fenêtres (cookies…) : blanc une fois inversé, donc noir */
+html:not(.dms-off, .dms-native) .bpce-modal-backdrop {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}

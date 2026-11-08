@@ -10,6 +10,15 @@ html:not(.dms-off, .dms-native) {
   background-color: #fff !important;
 }
 
+/*
+ * Fenêtres affichées au-dessus de la page par le navigateur (popover, <dialog> modal) :
+ * rendues hors de <html>, le filtre ci-dessus ne les atteint pas. Elles reçoivent le leur.
+ * (Caisse d'Épargne : la connexion s'affiche dans un popover.)
+ */
+html:not(.dms-off, .dms-native) :is(:popover-open, dialog:modal) {
+  filter: invert(0.9) hue-rotate(180deg) !important;
+}
+
 html:not(.dms-off, .dms-native) :is(img, video, canvas, iframe, embed, object, picture),
 html:not(.dms-off, .dms-native) [style*="background-image"] {
   filter: invert(1) hue-rotate(180deg) !important;
