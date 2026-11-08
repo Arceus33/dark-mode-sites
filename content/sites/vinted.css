@@ -1,0 +1,8 @@
+/*
+ * Vinted a un thème sombre complet dans son CSS ([data-theme=dark] sur <html>),
+ * activé par toggle.js. Il ne déclare pas color-scheme : sans cette règle,
+ * barres de défilement et champs natifs du navigateur resteraient clairs.
+ */
+html[data-theme="dark"]:not(.dms-off) {
+  color-scheme: dark;
+}

@@ -14,7 +14,7 @@
   const applySetting = ({ disabled, forced: forcedSites }) => {
     root.classList.toggle("dms-off", Boolean(disabled[site.id]));
     forced = Boolean(forcedSites[site.id]);
-    if (site.bodyClass) applyBodyClass();
+    if (dmsHasOwnTheme(site)) applyOwnTheme();
     else if (forced) root.classList.remove("dms-native");
   };
   const DEFAULTS = { disabled: {}, forced: {} };
@@ -43,16 +43,36 @@
     body.classList.toggle(to, on);
   }
 
-  if (site.bodyClass) {
+  // Attribut de <html> (ex. data-theme="dark" de Vinted), retiré quand le site est désactivé
+  function applyHtmlAttr() {
+    const { name, value } = site.htmlAttr;
+    const on = !root.classList.contains("dms-off");
+    // Ne touche à rien si l'attribut est déjà bon (évite une boucle avec l'observateur)
+    if (on && root.getAttribute(name) !== value) root.setAttribute(name, value);
+    else if (!on && root.getAttribute(name) === value) root.removeAttribute(name);
+  }
+
+  function applyOwnTheme() {
+    if (site.bodyClass) applyBodyClass();
+    if (site.htmlAttr) applyHtmlAttr();
+  }
+
+  if (dmsHasOwnTheme(site)) {
     root.classList.add("dms-native");
-    // <body> n'existe pas encore à document_start ; le site peut aussi remettre sa classe
-    new MutationObserver(applyBodyClass).observe(root, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    applyBodyClass();
+    if (site.bodyClass) {
+      // <body> n'existe pas encore à document_start ; le site peut aussi remettre sa classe
+      new MutationObserver(applyBodyClass).observe(root, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+    }
+    if (site.htmlAttr) {
+      // Le site peut réécrire l'attribut en affichant la page
+      new MutationObserver(applyHtmlAttr).observe(root, { attributes: true, attributeFilter: [site.htmlAttr.name] });
+    }
+    applyOwnTheme();
     return;
   }
 

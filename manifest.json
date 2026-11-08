@@ -33,6 +33,22 @@
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true
+    },
+    {
+      "matches": [
+        "*://vinted.fr/*", "*://*.vinted.fr/*", "*://vinted.com/*", "*://*.vinted.com/*", "*://vinted.be/*", "*://*.vinted.be/*",
+        "*://vinted.lu/*", "*://*.vinted.lu/*", "*://vinted.nl/*", "*://*.vinted.nl/*", "*://vinted.de/*", "*://*.vinted.de/*",
+        "*://vinted.at/*", "*://*.vinted.at/*", "*://vinted.es/*", "*://*.vinted.es/*", "*://vinted.it/*", "*://*.vinted.it/*",
+        "*://vinted.pt/*", "*://*.vinted.pt/*", "*://vinted.co.uk/*", "*://*.vinted.co.uk/*", "*://vinted.ie/*", "*://*.vinted.ie/*",
+        "*://vinted.pl/*", "*://*.vinted.pl/*", "*://vinted.cz/*", "*://*.vinted.cz/*", "*://vinted.sk/*", "*://*.vinted.sk/*",
+        "*://vinted.lt/*", "*://*.vinted.lt/*", "*://vinted.hu/*", "*://*.vinted.hu/*", "*://vinted.ro/*", "*://*.vinted.ro/*",
+        "*://vinted.hr/*", "*://*.vinted.hr/*", "*://vinted.gr/*", "*://*.vinted.gr/*", "*://vinted.se/*", "*://*.vinted.se/*",
+        "*://vinted.fi/*", "*://*.vinted.fi/*", "*://vinted.dk/*", "*://*.vinted.dk/*"
+      ],
+      "css": ["content/sites/vinted.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
     }
   ]
 }

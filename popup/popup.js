@@ -28,7 +28,7 @@
       state.textContent = "Mode sombre coupé sur ce site.";
       return;
     }
-    if (site.bodyClass) {
+    if (dmsHasOwnTheme(site)) {
       state.textContent = "Thème sombre du site activé.";
       return;
     }
@@ -46,7 +46,7 @@
   toggle.checked = !settings.disabled[site.id];
   forced.checked = Boolean(settings.forced[site.id]);
   forced.disabled = !toggle.checked;
-  forced.parentElement.hidden = Boolean(site.bodyClass);
+  forced.parentElement.hidden = dmsHasOwnTheme(site);
   showState();
 
   // Coche ou décoche le site dans une des listes enregistrées
