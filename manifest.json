@@ -71,14 +71,22 @@
       "run_at": "document_start"
     },
     {
-      "matches": ["*://assure.ameli.fr/*"],
+      "matches": ["*://hoyolab.com/*", "*://*.hoyolab.com/*"],
+      "exclude_matches": ["*://act.hoyolab.com/bbs/event/signin/*"],
+      "css": ["content/dark.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://ameli.fr/*", "*://*.ameli.fr/*"],
       "css": ["content/dark.css", "content/sites/ameli.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true
     },
     {
-      "matches": ["*://clients.boursobank.com/*"],
+      "matches": ["*://boursobank.com/*", "*://*.boursobank.com/*"],
       "css": ["content/dark.css", "content/sites/boursobank.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
@@ -92,15 +100,45 @@
       "all_frames": true
     },
     {
-      "matches": ["*://merch.riotgames.com/*"],
-      "css": ["content/dark.css", "content/sites/riot-merch.css"],
+      "matches": ["*://riotgames.com/*", "*://*.riotgames.com/*"],
+      "css": ["content/dark.css"],
       "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://merch.riotgames.com/*"],
+      "css": ["content/sites/riot-merch.css"],
       "run_at": "document_start",
       "all_frames": true
     },
     {
       "matches": ["*://vivinter.fr/*", "*://*.vivinter.fr/*"],
       "css": ["content/dark.css", "content/sites/vivinter.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://drive.google.com/*"],
+      "css": ["content/dark.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://gan.fr/*", "*://*.gan.fr/*",
+        "*://ganassurances.fr/*", "*://*.ganassurances.fr/*"
+      ],
+      "css": ["content/dark.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://laposte.fr/*", "*://*.laposte.fr/*"],
+      "css": ["content/dark.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true

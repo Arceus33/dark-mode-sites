@@ -21,7 +21,8 @@ async function setupReload(tabId) {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let site = null;
   try {
-    site = dmsSiteForHost(new URL(tab.url).hostname);
+    const url = new URL(tab.url);
+    site = dmsSiteForHost(url.hostname, url.pathname);
   } catch {
     // Page sans URL lisible (chrome://, nouvel onglet…)
   }

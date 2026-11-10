@@ -9,6 +9,8 @@
 // custom : pas d'inversion non plus, le thème est écrit à la main dans content/sites/<id>.css
 // (règles préfixées par html:not(.dms-off)).
 // detect: false : pas de détection des pages déjà sombres (le site ne l'est jamais et la trompe).
+// paths : seulement les pages dont le chemin commence ainsi (mêmes chemins dans manifest.json) ;
+// sert à donner un traitement à part à une page, le reste du site ayant sa propre entrée.
 const DMS_SITES = [
   { id: "ebay", name: "eBay", domains: ["ebay.fr", "ebay.com", "ebaydesc.com"] },
   {
@@ -40,31 +42,43 @@ const DMS_SITES = [
     id: "hoyolab",
     name: "HoYoLAB (connexion quotidienne)",
     domains: ["act.hoyolab.com"],
+    paths: ["/bbs/event/signin/"],
     // Page faite d'illustrations, que l'inversion laissait claires
     custom: true,
   },
-  { id: "ameli", name: "ameli", domains: ["assure.ameli.fr"] },
+  // Reste de HoYoLAB : inversion (après l'entrée de la connexion quotidienne, cherchée en premier)
+  { id: "hoyolab-site", name: "HoYoLAB", domains: ["hoyolab.com"] },
+  { id: "ameli", name: "ameli", domains: ["ameli.fr"] },
   {
     id: "boursobank",
     name: "BoursoBank",
-    domains: ["clients.boursobank.com"],
+    domains: ["boursobank.com"],
     // Bleu nuit autour d'une fenêtre blanche : la page passait pour déjà sombre
     detect: false,
   },
   // Connexion dans une iframe de www.icgauth.caisse-epargne.fr
   { id: "caisse-epargne", name: "Caisse d'Épargne", domains: ["caisse-epargne.fr"] },
-  { id: "riot-merch", name: "Boutique Riot Games", domains: ["merch.riotgames.com"] },
+  // Retouches de content/sites/riot-merch.css sur la boutique (merch) seulement
+  { id: "riot-merch", name: "Riot Games", domains: ["riotgames.com"] },
   // Site public (www) et espace assuré (assure)
   { id: "vivinter", name: "Vivinter", domains: ["vivinter.fr"] },
+  { id: "google-drive", name: "Google Drive", domains: ["drive.google.com"] },
+  // Site public (gan.fr), espace client et connexion (ganassurances.fr)
+  { id: "gan", name: "Gan Assurances", domains: ["gan.fr", "ganassurances.fr"] },
+  // Site public, suivi des envois et espace client
+  { id: "laposte", name: "La Poste", domains: ["laposte.fr"] },
 ];
 
 // Site sans inversion : thème sombre du site ou écrit à la main
 const dmsHasOwnTheme = (site) => Boolean(site.bodyClass || site.htmlAttr || site.custom);
 
-function dmsSiteForHost(hostname) {
+// pathname omis (iframe about:blank, chemin inconnu) : chemin non vérifié
+function dmsSiteForHost(hostname, pathname) {
   return (
-    DMS_SITES.find((site) =>
-      site.domains.some((d) => hostname === d || hostname.endsWith("." + d))
+    DMS_SITES.find(
+      (site) =>
+        site.domains.some((d) => hostname === d || hostname.endsWith("." + d)) &&
+        (pathname === undefined || !site.paths || site.paths.some((p) => pathname.startsWith(p)))
     ) || null
   );
 }

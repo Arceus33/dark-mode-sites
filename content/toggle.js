@@ -5,7 +5,7 @@
 (() => {
   // Iframe about:blank (ex. description d'un article Amazon) : site de la page parente
   const host = location.hostname || new URL(location.ancestorOrigins?.[0] || "http://_").hostname;
-  const site = dmsSiteForHost(host);
+  const site = dmsSiteForHost(host, location.hostname ? location.pathname : undefined);
   if (!site) return;
   const root = document.documentElement;
   // « Toujours sombre » coché dans la fenêtre de l'extension : pas de détection
