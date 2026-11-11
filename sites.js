@@ -19,6 +19,9 @@ const DMS_SITES = [
     domains: ["amazon.fr", "amazon.com", "amazon.de", "amazon.co.uk", "amazon.it", "amazon.es", "amazon.ca", "amazon.com.be", "amazon.nl"],
     // Bandeau sombre en temps normal, clair avec certains comptes Amazon Business
     lightZones: { "dms-light-navbar": "#nav-belt" },
+    // Bandeau marine et grand carrousel de l'accueil : la page passait parfois pour déjà
+    // sombre et restait blanche (ou flashait). Amazon n'a pas de thème sombre.
+    detect: false,
   },
   {
     id: "voir-anime",
