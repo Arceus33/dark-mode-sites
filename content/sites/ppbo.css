@@ -36,13 +36,31 @@ html:not(.dms-off) #footer {
   background-color: var(--dms-page) !important;
 }
 
-/* Texte noir ou bleu-vert foncé du site, illisible sur les fonds assombris */
-html:not(.dms-off) :is(body, td, xmp, #zone_aventure, .grand2) {
+/*
+ * Texte clair seulement dans les zones assombries ci-dessous : un panneau clair
+ * pas encore traité garde son texte foncé, donc reste lisible.
+ * (td repris à part : css2.css lui donne du noir, qui ne s'hérite pas.)
+ */
+html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"]),
+html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"]) td {
   color: var(--dms-text) !important;
 }
 
-html:not(.dms-off) :is([style*="color:#0c465c"], [style*="color:#3b6271"], [style*="color:#000"], .txt_date, .txt_titre_news, .link_news) {
+html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"]) :is([style*="color:#0c465c"], [style*="color:#3b6271"], [style*="color:#000"], [style*="color:black"], .txt_date, .txt_titre_news, .link_news) {
   color: var(--dms-link) !important;
+}
+
+/* Couleurs foncées des liens et avertissements (banque, derniers shineys) */
+html:not(.dms-off) :is([style*="c6d5db" i], [style*="#ebf9ff"]) :is([style*="color:blue"], [style*="color : blue"]) {
+  color: var(--dms-link) !important;
+}
+
+html:not(.dms-off) :is([style*="c6d5db" i], [style*="#ebf9ff"]) :is(a[style*="#006400"], a[style*="green"], font[color="green"]) {
+  color: #7fd47f !important;
+}
+
+html:not(.dms-off) :is([style*="c6d5db" i], [style*="#ebf9ff"]) [style*="#800000"] {
+  color: #ff8a80 !important;
 }
 
 /* Pied de page : illustration claire gardée telle quelle, texte foncé d'origine */
@@ -67,13 +85,23 @@ html:not(.dms-off) .bg_bloc_news {
 
 /* --- Carte de la ville et bloc « Vos données » --- */
 
-html:not(.dms-off) [style*="#c6d5db"]:not(tr) {
+html:not(.dms-off) [style*="c6d5db" i]:not(tr) {
   background-color: var(--dms-surface) !important;
 }
 
 html:not(.dms-off) [style*="#79c9f9"] {
   background-color: var(--dms-blue) !important;
   border-color: var(--dms-border) !important;
+}
+
+/* Banque (#ebf9ff), derniers shineys (#efefef), bulle de l'arène */
+html:not(.dms-off) :is([style*="#ebf9ff"], [style*="#efefef"]) {
+  background-color: var(--dms-surface) !important;
+}
+
+html:not(.dms-off) .message_content {
+  background: var(--dms-surface) !important;
+  border-color: var(--dms-blue-2) !important;
 }
 
 /* --- Classement (lignes alternées) --- */
@@ -107,18 +135,23 @@ html:not(.dms-off) [style*="rgb(210,230,255)"] {
 
 /* --- Cadres illustrés clairs : image de fond inversée sous le contenu --- */
 
-html:not(.dms-off) :is(#cadreInfos, [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_haut"], [style*="rectangle_milieu"], [style*="rectangle_bas"], .bg_bloc_news) {
+html:not(.dms-off) :is(#cadreInfos, #bg_arene, #bg_text_arene, [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_haut"], [style*="rectangle_milieu"], [style*="rectangle_bas"], .bg_bloc_news) {
   position: relative;
   isolation: isolate;
 }
 
-html:not(.dms-off) :is(#cadreInfos, [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_haut"], [style*="rectangle_milieu"], [style*="rectangle_bas"])::before {
+html:not(.dms-off) :is(#cadreInfos, #bg_arene, #bg_text_arene, [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_haut"], [style*="rectangle_milieu"], [style*="rectangle_bas"])::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   backdrop-filter: invert(0.88) hue-rotate(180deg);
   pointer-events: none;
+}
+
+/* Arène : le bandeau du titre, en haut de l'image, est déjà sombre */
+html:not(.dms-off) #bg_arene::before {
+  top: 56px;
 }
 
 /* Onglets (Inventaire, Stockage…) : leurs libellés sont des images au texte foncé,
@@ -156,7 +189,7 @@ html:not(.dms-off) :is(.colisee_titre, .boutonSelect, .boutonMessageBox) {
   box-shadow: none !important;
 }
 
-html:not(.dms-off) :is(input, textarea, select)[style*="background"] {
+html:not(.dms-off) :is(input:not([type="image"], [type="checkbox"], [type="radio"]), textarea, select) {
   background: var(--dms-field) !important;
   color: var(--dms-text) !important;
 }
