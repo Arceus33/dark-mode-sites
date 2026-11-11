@@ -69,6 +69,8 @@ const DMS_SITES = [
   { id: "laposte", name: "La Poste", domains: ["laposte.fr"] },
   // Interface d'administration de la Livebox Orange (réseau local)
   { id: "livebox", name: "Livebox", domains: ["192.168.1.1"] },
+  // Images des annonces sur etsystatic.com : ré-inversées comme <img>
+  { id: "etsy", name: "Etsy", domains: ["etsy.com", "etsy.me"] },
 ];
 
 // Site sans inversion : thème sombre du site ou écrit à la main
