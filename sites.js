@@ -73,7 +73,13 @@ const DMS_SITES = [
   { id: "etsy", name: "Etsy", domains: ["etsy.com", "etsy.me"] },
   // Gifteo : connexion (auth.gifteo.fr) et reste du site
   { id: "gifteo", name: "Gifteo", domains: ["gifteo.fr"] },
-  { id: "ppbo", name: "PPBO", domains: ["ppbo.ws"] },
+  {
+    id: "ppbo",
+    name: "PPBO",
+    domains: ["ppbo.ws"],
+    // Site peint d'images de fond que l'inversion faussait
+    custom: true,
+  },
 ];
 
 // Site sans inversion : thème sombre du site ou écrit à la main

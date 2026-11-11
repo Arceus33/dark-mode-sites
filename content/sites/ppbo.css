@@ -1,0 +1,162 @@
+/*
+ * PPBO (ppbo.ws) : thème sombre écrit à la main, sans inversion.
+ * La page mêle couleurs unies (jaune, crème, bleu pâle, souvent en style inline) et
+ * illustrations posées en image de fond (cadres, onglets) : l'inversion faussait ces dernières.
+ * - couleurs unies : remplacées, ciblées par leur valeur dans l'attribut style ;
+ * - cadres illustrés clairs : ::before + backdrop-filter qui inverse la seule image de fond,
+ *   sans toucher aux icônes ni au texte posés dessus.
+ */
+
+html:not(.dms-off) {
+  color-scheme: dark;
+  --dms-bg: #121417;
+  --dms-page: #1a1d21;
+  --dms-surface: #232830;
+  --dms-field: #2d333b;
+  --dms-border: #3d444d;
+  --dms-text: #e6e6e6;
+  --dms-muted: #a8b3ba;
+  --dms-link: #8fd0ec;
+  --dms-blue: #1b3446;
+  --dms-blue-2: #22405a;
+}
+
+/* --- Fonds de page : jaune (body inline), crème (#fff0b5), pied de page --- */
+
+html:not(.dms-off),
+html:not(.dms-off) body {
+  background-color: var(--dms-bg) !important;
+}
+
+html:not(.dms-off) :is(#content, #left_bloc1, [style*="#fff0b5"]) {
+  background-color: var(--dms-page) !important;
+}
+
+html:not(.dms-off) #footer {
+  background-color: var(--dms-page) !important;
+}
+
+/* Texte noir ou bleu-vert foncé du site, illisible sur les fonds assombris */
+html:not(.dms-off) :is(body, td, xmp, #zone_aventure, .grand2) {
+  color: var(--dms-text) !important;
+}
+
+html:not(.dms-off) :is([style*="color:#0c465c"], [style*="color:#3b6271"], [style*="color:#000"], .txt_date, .txt_titre_news, .link_news) {
+  color: var(--dms-link) !important;
+}
+
+/* Pied de page : illustration claire gardée telle quelle, texte foncé d'origine */
+html:not(.dms-off) #footer :is(*, a) {
+  color: #24434f !important;
+}
+
+/* Liens sans couleur propre (ex. dresseurs connectés dans la même ville) */
+html:not(.dms-off) #left_bloc1 a:not([style*="color"]) {
+  color: var(--dms-link) !important;
+}
+
+/* Libellé « Déconnexion » : image au texte foncé, posée sur le cadre assombri */
+html:not(.dms-off) img[src*="deco.png"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Actualités : fond gris uni (fond_news.jpg) */
+html:not(.dms-off) .bg_bloc_news {
+  background: var(--dms-surface) !important;
+}
+
+/* --- Carte de la ville et bloc « Vos données » --- */
+
+html:not(.dms-off) [style*="#c6d5db"]:not(tr) {
+  background-color: var(--dms-surface) !important;
+}
+
+html:not(.dms-off) [style*="#79c9f9"] {
+  background-color: var(--dms-blue) !important;
+  border-color: var(--dms-border) !important;
+}
+
+/* --- Classement (lignes alternées) --- */
+
+html:not(.dms-off) tr[style*="#c6d5db"] {
+  background-color: var(--dms-surface) !important;
+}
+
+html:not(.dms-off) tr[style*="#9fafb6"] {
+  background-color: var(--dms-field) !important;
+}
+
+/* --- Défis (colonne de droite) --- */
+
+html:not(.dms-off) [style*="#aab7bd"] {
+  background-color: var(--dms-surface) !important;
+  border-color: var(--dms-border) !important;
+}
+
+html:not(.dms-off) [style*="rgb(210,210,210)"] {
+  background-color: var(--dms-field) !important;
+}
+
+html:not(.dms-off) [style*="rgb(165,210,240)"] {
+  background-color: var(--dms-blue) !important;
+}
+
+html:not(.dms-off) [style*="rgb(210,230,255)"] {
+  background-color: var(--dms-blue-2) !important;
+}
+
+/* --- Cadres illustrés clairs : image de fond inversée sous le contenu --- */
+
+html:not(.dms-off) :is(#cadreInfos, [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_haut"], [style*="rectangle_milieu"], [style*="rectangle_bas"], .bg_bloc_news) {
+  position: relative;
+  isolation: isolate;
+}
+
+html:not(.dms-off) :is(#cadreInfos, [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_haut"], [style*="rectangle_milieu"], [style*="rectangle_bas"])::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: invert(0.88) hue-rotate(180deg);
+  pointer-events: none;
+}
+
+/* Onglets (Inventaire, Stockage…) : leurs libellés sont des images au texte foncé,
+   le fond reste clair, juste atténué */
+html:not(.dms-off) [style*="bg_onglet.png"] {
+  position: relative;
+  isolation: isolate;
+}
+
+html:not(.dms-off) [style*="bg_onglet.png"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: brightness(0.8);
+  pointer-events: none;
+}
+
+/* --- Fenêtres et champs --- */
+
+html:not(.dms-off) :is(#dhtmltooltip, #boxMessages, #colisee_global, #bloc_carte, .selectPokemon) {
+  background: var(--dms-surface) !important;
+  border-color: var(--dms-border) !important;
+  color: var(--dms-text) !important;
+}
+
+html:not(.dms-off) #fondBoxMessages {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+html:not(.dms-off) :is(.colisee_titre, .boutonSelect, .boutonMessageBox) {
+  background: var(--dms-field) !important;
+  border-color: var(--dms-border) !important;
+  color: var(--dms-text) !important;
+  box-shadow: none !important;
+}
+
+html:not(.dms-off) :is(input, textarea, select)[style*="background"] {
+  background: var(--dms-field) !important;
+  color: var(--dms-text) !important;
+}

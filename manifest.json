@@ -166,7 +166,7 @@
     },
     {
       "matches": ["*://ppbo.ws/*", "*://*.ppbo.ws/*"],
-      "css": ["content/dark.css"],
+      "css": ["content/sites/ppbo.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true
