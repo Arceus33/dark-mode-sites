@@ -41,12 +41,12 @@ html:not(.dms-off) #footer {
  * pas encore traité garde son texte foncé, donc reste lisible.
  * (td repris à part : css2.css lui donne du noir, qui ne s'hérite pas.)
  */
-html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"]),
-html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"]) td {
+html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"], [style*="bg_histo.png"], [style*="bg_bloc_dr.png"], [style*="bloc_pkm_mis_en_vente"], [style*="bloc_vos_pok_v"], [style*="bloc_vos_pk_vente"], [style*="bloc1_Gare"], [style*="bg_inf_dress"], [style*="bg_sn_clan"], [style*="bg_sn_equi"], #bloc_pok2, div.pseud_choi, #ven, #bg_combat1, .liste-bouton-collection, [style*="#a3dcf2"], [style*="#ecf6eb"]),
+html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"], [style*="bg_histo.png"], [style*="bg_bloc_dr.png"], [style*="bloc_pkm_mis_en_vente"], [style*="bloc_vos_pok_v"], [style*="bloc_vos_pk_vente"], [style*="bloc1_Gare"], [style*="bg_inf_dress"], [style*="bg_sn_clan"], [style*="bg_sn_equi"], #bloc_pok2, div.pseud_choi, #ven, #bg_combat1, .liste-bouton-collection, [style*="#a3dcf2"], [style*="#ecf6eb"]) td {
   color: var(--dms-text) !important;
 }
 
-html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"]) :is([style*="color:#0c465c"], [style*="color:#3b6271"], [style*="color:#000"], [style*="color:black"], .txt_date, .txt_titre_news, .link_news) {
+html:not(.dms-off) :is(#left_bloc1, #cadreInfos, #bg_arene, .message_content, [style*="#79c9f9"], [style*="c6d5db" i], [style*="#ebf9ff"], [style*="#efefef"], [style*="fiche-pkm.png"], [style*="bg_equip.png"], [style*="bg_pok_equip.png"], [style*="rectangle_"], [style*="bg_histo.png"], [style*="bg_bloc_dr.png"], [style*="bloc_pkm_mis_en_vente"], [style*="bloc_vos_pok_v"], [style*="bloc_vos_pk_vente"], [style*="bloc1_Gare"], [style*="bg_inf_dress"], [style*="bg_sn_clan"], [style*="bg_sn_equi"], #bloc_pok2, div.pseud_choi, #ven, #bg_combat1, .liste-bouton-collection, [style*="#a3dcf2"], [style*="#ecf6eb"]) :is([style*="color:#0c465c"], [style*="color:#3b6271"], [style*="color:#000"], [style*="color:black"], .txt_date, .txt_titre_news, .link_news) {
   color: var(--dms-link) !important;
 }
 
@@ -192,4 +192,48 @@ html:not(.dms-off) :is(.colisee_titre, .boutonSelect, .boutonMessageBox) {
 html:not(.dms-off) :is(input:not([type="image"], [type="checkbox"], [type="radio"]), textarea, select) {
   background: var(--dms-field) !important;
   color: var(--dms-text) !important;
+}
+
+/* --- Autres pages : historique, troc, centre de voyage, profil, combat --- */
+
+html:not(.dms-off) :is(#ven, #bg_combat1, .liste-bouton-collection, [style*="#a3dcf2"], [style*="#ecf6eb"]) {
+  background-color: var(--dms-blue) !important;
+}
+
+html:not(.dms-off) :is(.liste-bouton-collection, [style*="#ecf6eb"]) {
+  background-color: var(--dms-surface) !important;
+}
+
+html:not(.dms-off) :where([style*="bg_histo.png"], [style*="bg_bloc_dr.png"], [style*="bloc_pkm_mis_en_vente"], [style*="bloc_vos_pok_v"], [style*="bloc_vos_pk_vente"], [style*="bloc1_Gare"], [style*="bg_inf_dress"], [style*="bg_sn_clan"], [style*="bg_sn_equi"], #bloc_pok2, div.pseud_choi) {
+  position: relative;
+  isolation: isolate;
+}
+
+html:not(.dms-off) :where([style*="bg_histo.png"], [style*="bg_bloc_dr.png"], [style*="bloc_pkm_mis_en_vente"], [style*="bloc_vos_pok_v"], [style*="bloc_vos_pk_vente"], [style*="bloc1_Gare"], [style*="bg_inf_dress"], [style*="bg_sn_clan"], [style*="bg_sn_equi"], #bloc_pok2, div.pseud_choi)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: invert(0.88) hue-rotate(180deg);
+  pointer-events: none;
+}
+
+/* Bandeaux de titre déjà sombres (ou rouges) en haut de l'image : laissés tels quels */
+html:not(.dms-off) :is([style*="bloc_pkm_mis_en_vente"], [style*="bloc_vos_pok_v"], [style*="bloc_vos_pk_vente"])::before {
+  top: 45px;
+}
+
+html:not(.dms-off) :is([style*="bg_inf_dress"], [style*="bg_sn_clan"], [style*="bg_sn_equi"])::before {
+  top: 34px;
+}
+
+/* Liens noirs (« Voir Fiche » du clan, « la boutique » du centre de voyage) */
+html:not(.dms-off) :is([style*="bg_sn_clan"], [style*="bloc1_Gare"]) a:not([style*="color"]) {
+  color: var(--dms-link) !important;
+}
+
+/* Centre de voyage : photo du train à gauche, texte à droite */
+html:not(.dms-off) [style*="bloc1_Gare"]::before {
+  left: 157px;
+  bottom: 34px;
 }
