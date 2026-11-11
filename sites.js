@@ -73,6 +73,15 @@ const DMS_SITES = [
   { id: "etsy", name: "Etsy", domains: ["etsy.com", "etsy.me"] },
   // Gifteo : connexion (auth.gifteo.fr) et reste du site
   { id: "gifteo", name: "Gifteo", domains: ["gifteo.fr"] },
+  // Forum PPBO (PunBB) : inversion, avec retouches (cherché avant le reste du site)
+  {
+    id: "ppbo-forum",
+    name: "PPBO (forum)",
+    domains: ["ppbo.ws"],
+    paths: ["/forum/"],
+    // Bandeau illustré et fond orange : la page passait pour déjà sombre
+    detect: false,
+  },
   {
     id: "ppbo",
     name: "PPBO",

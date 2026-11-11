@@ -1,0 +1,26 @@
+/*
+ * Forum PPBO (ppbo.ws/forum/) : inversion générique, avec retouches.
+ * Le reste du site a son thème écrit à la main (ppbo.css).
+ * - fonds orange, crème et jaune : remplacés par des gris, qui donnent un gris sombre une fois inversés ;
+ * - images de fond posées en « background: url() » (barre de menu, pied de page),
+ *   que dark.css ne ré-inverse pas : ré-inversées ici pour garder leurs couleurs.
+ */
+
+html:not(.dms-off, .dms-native),
+html:not(.dms-off, .dms-native) body {
+  background-color: #f2f2f2 !important;
+}
+
+html:not(.dms-off, .dms-native) :is(.brd-page, .brd, #brd-head, [style*="#fff0b5"]) {
+  background-color: #e6e6e6 !important;
+  border-color: #e6e6e6 !important;
+}
+
+/* Cadre « Salut … » : jaune vif */
+html:not(.dms-off, .dms-native) [style*="#FEDA48"] {
+  background-color: #dcdcdc !important;
+}
+
+html:not(.dms-off, .dms-native) :is(#navigation_horizenatl, [style*="bas.jpg"], [style*="login-box-header.png"]) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}

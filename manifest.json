@@ -165,7 +165,15 @@
       "all_frames": true
     },
     {
+      "matches": ["*://ppbo.ws/forum/*", "*://*.ppbo.ws/forum/*"],
+      "css": ["content/dark.css", "content/sites/ppbo-forum.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
       "matches": ["*://ppbo.ws/*", "*://*.ppbo.ws/*"],
+      "exclude_matches": ["*://ppbo.ws/forum/*", "*://*.ppbo.ws/forum/*"],
       "css": ["content/sites/ppbo.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
