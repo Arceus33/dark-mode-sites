@@ -1,7 +1,7 @@
 # Dark Mode Sites
 
 Extension Chrome qui applique un mode sombre sur mesure à une liste de sites.
-Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Amazon** (`amazon.fr`, `.com`, `.de`, `.co.uk`, `.it`, `.es`, `.ca`, `.com.be`, `.nl`), **Voir Anime** (`voir-anime.to`), **Vinted** (`vinted.fr`, `.com`, `.be`, `.de`, `.es`, `.it`, `.co.uk` et les autres pays), **HoYoLAB** (`hoyolab.com`, thème sur mesure pour la connexion quotidienne), **ameli** (`ameli.fr`), **BoursoBank** (`boursobank.com`), **Caisse d'Épargne** (`caisse-epargne.fr`), **Riot Games** (`riotgames.com`, dont la boutique `merch.riotgames.com`), **Vivinter** (`www.vivinter.fr` et l'espace assuré `assure.vivinter.fr`), **Google Drive** (`drive.google.com`), **Gan Assurances** (`gan.fr` et `ganassurances.fr`), **La Poste** (`laposte.fr`, dont le suivi des envois et l'espace client).
+Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Amazon** (`amazon.fr`, `.com`, `.de`, `.co.uk`, `.it`, `.es`, `.ca`, `.com.be`, `.nl`), **Voir Anime** (`voir-anime.to`), **Vinted** (`vinted.fr`, `.com`, `.be`, `.de`, `.es`, `.it`, `.co.uk` et les autres pays), **HoYoLAB** (`hoyolab.com`, thème sur mesure pour la connexion quotidienne), **ameli** (`ameli.fr`), **BoursoBank** (`boursobank.com`), **Caisse d'Épargne** (`caisse-epargne.fr`), **Riot Games** (`riotgames.com`, dont la boutique `merch.riotgames.com`), **Vivinter** (`www.vivinter.fr` et l'espace assuré `assure.vivinter.fr`), **Google Drive** (`drive.google.com`), **Gan Assurances** (`gan.fr` et `ganassurances.fr`), **La Poste** (`laposte.fr`, dont le suivi des envois et l'espace client), **Livebox** (interface `192.168.1.1`).
 
 ## Installation
 
@@ -11,6 +11,15 @@ Sites pris en charge : **eBay** (`ebay.fr`, `ebay.com`), **Amazon** (`amazon.fr`
 4. Épingler l'extension (icône puzzle) pour accéder au bouton marche/arrêt.
 
 Après une modification des fichiers : bouton **Recharger l'extension** dans la fenêtre de l'extension (il recharge aussi l'onglet en cours), ou bouton ⟳ dans `chrome://extensions` puis recharger l'onglet.
+
+### Opera GX
+
+1. Ouvrir `opera://extensions`.
+2. Activer le **Mode développeur** (en haut à droite).
+3. Cliquer sur **Charger l'extension non empaquetée** et choisir ce dossier.
+4. Épingler l'extension (icône cube de la barre latérale/d'outils).
+
+Pas besoin de désactiver **Forcer les pages sombres** (Paramètres > Apparence) : l'extension l'empêche d'agir sur les pages qu'elle assombrit elle-même. Les réglages par site se synchronisent avec le compte Opera.
 
 ### Firefox
 

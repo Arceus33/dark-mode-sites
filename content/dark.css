@@ -8,6 +8,9 @@ html:not(.dms-off, .dms-native) {
   filter: invert(0.9) hue-rotate(180deg) !important;
   /* Blanc inversé = fond sombre, y compris sous les zones transparentes */
   background-color: #fff !important;
+  /* Empêche l'assombrissement forcé du navigateur (Opera GX « Forcer les pages sombres »,
+     chrome://flags) de s'ajouter à l'inversion, ce qui rendrait la page claire */
+  color-scheme: only light !important;
 }
 
 /*

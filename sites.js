@@ -67,6 +67,8 @@ const DMS_SITES = [
   { id: "gan", name: "Gan Assurances", domains: ["gan.fr", "ganassurances.fr"] },
   // Site public, suivi des envois et espace client
   { id: "laposte", name: "La Poste", domains: ["laposte.fr"] },
+  // Interface d'administration de la Livebox Orange (réseau local)
+  { id: "livebox", name: "Livebox", domains: ["192.168.1.1"] },
 ];
 
 // Site sans inversion : thème sombre du site ou écrit à la main
