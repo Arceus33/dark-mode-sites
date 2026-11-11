@@ -75,6 +75,20 @@ html:not(.dms-off, .dms-native) :is(
   overflow: hidden !important;
 }
 
+/*
+ * Photo principale quand on est connecté : enveloppe .mb-ai-picture-wrapper en display: contents.
+ * Sans boîte, elle ne dessine pas son filtre, et dark.css retirait celui de la photo : négatif.
+ * Le filtre passe donc de l'enveloppe à la photo.
+ */
+html:not(.dms-off, .dms-native) .mb-ai-picture-wrapper {
+  filter: none !important;
+}
+
+/* Classe doublée : doit l'emporter sur la règle « pas deux fois » de dark.css, plus spécifique */
+html:not(.dms-off, .dms-native) .mb-ai-picture-wrapper.mb-ai-picture-wrapper :is(img, video, canvas) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
 /* --- Compte Amazon Business sur amazon.fr : bandeau #navbar.nav-business-beacon --- */
 
 /*
