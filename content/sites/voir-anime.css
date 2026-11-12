@@ -1,5 +1,5 @@
 /*
- * Retouches de voir-anime.to par-dessus son thème sombre Madara (body.text-ui-light),
+ * Retouches de voir-anime / voiranime (tous les miroirs) par-dessus son thème sombre Madara (body.text-ui-light),
  * pour les zones que ce thème laisse en blanc.
  * :is(…, #dms) donne aux sélecteurs le poids d'un identifiant, pour passer devant
  * les styles du site (Ajax Search Pro cible ses boîtes par identifiant, avec !important).

@@ -42,7 +42,25 @@
       "match_about_blank": true
     },
     {
-      "matches": ["*://voir-anime.to/*", "*://*.voir-anime.to/*"],
+      "matches": [
+        "*://voir-anime.to/*", "*://*.voir-anime.to/*", "*://voir-anime.cx/*", "*://*.voir-anime.cx/*",
+        "*://voir-anime.com/*", "*://*.voir-anime.com/*", "*://voir-anime.net/*", "*://*.voir-anime.net/*",
+        "*://voir-anime.org/*", "*://*.voir-anime.org/*", "*://voir-anime.fr/*", "*://*.voir-anime.fr/*",
+        "*://voir-anime.tv/*", "*://*.voir-anime.tv/*", "*://voir-anime.cc/*", "*://*.voir-anime.cc/*",
+        "*://voir-anime.io/*", "*://*.voir-anime.io/*", "*://voir-anime.me/*", "*://*.voir-anime.me/*",
+        "*://voir-anime.ws/*", "*://*.voir-anime.ws/*", "*://voir-anime.bz/*", "*://*.voir-anime.bz/*",
+        "*://voir-anime.pro/*", "*://*.voir-anime.pro/*", "*://voir-anime.lol/*", "*://*.voir-anime.lol/*",
+        "*://voir-anime.watch/*", "*://*.voir-anime.watch/*", "*://voir-anime.site/*", "*://*.voir-anime.site/*",
+        "*://voir-anime.online/*", "*://*.voir-anime.online/*", "*://voiranime.to/*", "*://*.voiranime.to/*",
+        "*://voiranime.cx/*", "*://*.voiranime.cx/*", "*://voiranime.com/*", "*://*.voiranime.com/*",
+        "*://voiranime.net/*", "*://*.voiranime.net/*", "*://voiranime.org/*", "*://*.voiranime.org/*",
+        "*://voiranime.fr/*", "*://*.voiranime.fr/*", "*://voiranime.tv/*", "*://*.voiranime.tv/*",
+        "*://voiranime.cc/*", "*://*.voiranime.cc/*", "*://voiranime.io/*", "*://*.voiranime.io/*",
+        "*://voiranime.me/*", "*://*.voiranime.me/*", "*://voiranime.ws/*", "*://*.voiranime.ws/*",
+        "*://voiranime.bz/*", "*://*.voiranime.bz/*", "*://voiranime.pro/*", "*://*.voiranime.pro/*",
+        "*://voiranime.lol/*", "*://*.voiranime.lol/*", "*://voiranime.watch/*", "*://*.voiranime.watch/*",
+        "*://voiranime.site/*", "*://*.voiranime.site/*", "*://voiranime.online/*", "*://*.voiranime.online/*"
+      ],
       "css": ["content/dark.css", "content/sites/voir-anime.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",

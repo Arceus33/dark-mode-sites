@@ -26,7 +26,15 @@ const DMS_SITES = [
   {
     id: "voir-anime",
     name: "Voir Anime",
-    domains: ["voir-anime.to"],
+    // Miroirs du site sous plusieurs noms et extensions (même thème Madara)
+    domains: [
+      "voir-anime.to", "voir-anime.cx", "voir-anime.com", "voir-anime.net", "voir-anime.org", "voir-anime.fr",
+      "voir-anime.tv", "voir-anime.cc", "voir-anime.io", "voir-anime.me", "voir-anime.ws", "voir-anime.bz",
+      "voir-anime.pro", "voir-anime.lol", "voir-anime.watch", "voir-anime.site", "voir-anime.online", "voiranime.to",
+      "voiranime.cx", "voiranime.com", "voiranime.net", "voiranime.org", "voiranime.fr", "voiranime.tv",
+      "voiranime.cc", "voiranime.io", "voiranime.me", "voiranime.ws", "voiranime.bz", "voiranime.pro",
+      "voiranime.lol", "voiranime.watch", "voiranime.site", "voiranime.online",
+    ],
     // Thème WordPress Madara : text-ui-light = texte clair sur fond sombre
     bodyClass: { from: "text-ui-dark", to: "text-ui-light" },
   },
