@@ -84,6 +84,8 @@ const DMS_SITES = [
   { id: "etsy", name: "Etsy", domains: ["etsy.com", "etsy.me"] },
   // Gifteo : connexion (auth.gifteo.fr) et reste du site
   { id: "gifteo", name: "Gifteo", domains: ["gifteo.fr"] },
+  // INPI : guichet unique des formalités d’entreprise et reste du site
+  { id: "inpi", name: "INPI", domains: ["inpi.fr"] },
   // Forum PPBO (PunBB) : inversion, avec retouches (cherché avant le reste du site)
   {
     id: "ppbo-forum",
