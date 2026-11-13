@@ -87,7 +87,9 @@ const DMS_SITES = [
   // INPI : guichet unique des formalités d’entreprise et reste du site
   { id: "inpi", name: "INPI", domains: ["inpi.fr"] },
   // Darty : boutique, espace client et sous-domaines (darty.fr renvoie vers darty.com)
-  { id: "darty", name: "Darty", domains: ["darty.com", "darty.fr"] },
+  // Grands visuels sombres de l'accueil : la page passait pour déjà sombre et restait
+  // blanche. Darty n'a pas de thème sombre.
+  { id: "darty", name: "Darty", domains: ["darty.com", "darty.fr"], detect: false },
   // Forum PPBO (PunBB) : inversion, avec retouches (cherché avant le reste du site)
   {
     id: "ppbo-forum",
