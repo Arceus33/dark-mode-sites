@@ -190,6 +190,13 @@
       "all_frames": true
     },
     {
+      "matches": ["*://darty.com/*", "*://*.darty.com/*", "*://darty.fr/*", "*://*.darty.fr/*"],
+      "css": ["content/dark.css"],
+      "js": ["sites.js", "content/toggle.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
       "matches": ["*://ppbo.ws/forum/*", "*://*.ppbo.ws/forum/*"],
       "css": ["content/dark.css", "content/sites/ppbo-forum.css"],
       "js": ["sites.js", "content/toggle.js"],
