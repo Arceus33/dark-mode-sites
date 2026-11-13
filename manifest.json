@@ -191,7 +191,7 @@
     },
     {
       "matches": ["*://darty.com/*", "*://*.darty.com/*", "*://darty.fr/*", "*://*.darty.fr/*"],
-      "css": ["content/dark.css"],
+      "css": ["content/dark.css", "content/sites/darty.css"],
       "js": ["sites.js", "content/toggle.js"],
       "run_at": "document_start",
       "all_frames": true

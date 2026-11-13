@@ -1,0 +1,21 @@
+/* Retouches propres à Darty, par-dessus content/dark.css */
+
+/*
+ * Habillage de l'accueil (ex. Black Friday) : image de fond posée en style sur un bloc
+ * qui contient toute la page. dark.css ré-inverse les [style*="background-image"],
+ * la page entière retrouvait donc ses couleurs claires. Ce bloc n'est pas ré-inversé,
+ * son image de fond est retirée, et les médias qu'il contient le sont de nouveau.
+ */
+html:not(.dms-off, .dms-native) [style*="background-image"]:has(input, header, main, nav) {
+  filter: none !important;
+  background-image: none !important;
+}
+html:not(.dms-off, .dms-native) [style*="background-image"]:has(input, header, main, nav)
+  :is(img, video, canvas, iframe, embed, object, picture, [style*="background-image"]) {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+/* Une image dans un élément déjà ré-inversé ne doit pas l'être deux fois */
+html:not(.dms-off, .dms-native) [style*="background-image"]:has(input, header, main, nav)
+  :is(picture, [style*="background-image"]) :is(img, video, canvas, picture, [style*="background-image"]) {
+  filter: none !important;
+}
