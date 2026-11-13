@@ -10,6 +10,13 @@ html:not(.dms-off, .dms-native) [style*="background-image"]:has(input, header, m
   filter: none !important;
   background-image: none !important;
 }
+/*
+ * Fond noir de l'habillage : l'inversion le rendait gris clair autour de la page.
+ * Fond blanc d'origine forcé, donc sombre une fois inversé.
+ */
+html:not(.dms-off, .dms-native) :is(body, [style*="background-image"]:has(input, header, main, nav)) {
+  background-color: #fff !important;
+}
 html:not(.dms-off, .dms-native) [style*="background-image"]:has(input, header, main, nav)
   :is(img, video, canvas, iframe, embed, object, picture, [style*="background-image"]) {
   filter: invert(1) hue-rotate(180deg) !important;
