@@ -90,6 +90,8 @@ const DMS_SITES = [
   // Grands visuels sombres de l'accueil : la page passait pour déjà sombre et restait
   // blanche. Darty n'a pas de thème sombre.
   { id: "darty", name: "Darty", domains: ["darty.com", "darty.fr"], detect: false },
+  // Thème sombre du site ([data-theme=dark] sur <html>) ; menus déroulants natifs corrigés en CSS
+  { id: "leboncoin", name: "leboncoin", domains: ["leboncoin.fr"], htmlAttr: { name: "data-theme", value: "dark" } },
   // Forum PPBO (PunBB) : inversion, avec retouches (cherché avant le reste du site)
   {
     id: "ppbo-forum",

@@ -1,0 +1,14 @@
+/*
+ * leboncoin a un thème sombre complet dans son CSS ([data-theme=dark] sur <html>),
+ * activé par toggle.js. Ses menus déroulants sont des <select> natifs invisibles
+ * (opacity: 0) posés sur un faux champ, avec fond transparent et texte clair :
+ * la liste ouverte par le navigateur s'affichait blanche, texte blanc dessus.
+ */
+html[data-theme="dark"]:not(.dms-off) {
+  color-scheme: dark;
+}
+
+html[data-theme="dark"]:not(.dms-off) :is(select, option, optgroup) {
+  background-color: var(--color-surface, #1b1b1f);
+  color: var(--color-on-surface, #ececf0);
+}
