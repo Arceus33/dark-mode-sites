@@ -89,6 +89,20 @@ html:not(.dms-off, .dms-native) .mb-ai-picture-wrapper.mb-ai-picture-wrapper :is
   filter: invert(1) hue-rotate(180deg) !important;
 }
 
+/*
+ * Photos des résultats de recherche (compte connecté) : <img> en position absolute dans
+ * un <picture> en ligne, de largeur nulle. Le filtre de dark.css sur <picture> en faisait
+ * le bloc de référence de la photo, réduite à rien : carrés vides. Le filtre passe donc
+ * de <picture> à la photo.
+ */
+html:not(.dms-off, .dms-native) [class*="-aspect"] > picture {
+  filter: none !important;
+}
+
+html:not(.dms-off, .dms-native) [class*="-aspect"] > picture > img.s-image {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
 /* --- Compte Amazon Business sur amazon.fr : bandeau #navbar.nav-business-beacon --- */
 
 /*
